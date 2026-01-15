@@ -22,7 +22,7 @@ const TaskForm = ({ onSuccess, initialTask }) => {
         e.preventDefault();
         try {
             const taskData = { title, level, date_start: dateStart, date_end: dateEnd };
-            if (initialTask) {
+            if (initialTask && initialTask.$id) {
                 await updateTask(initialTask.$id, taskData);
             } else {
                 await addTask(taskData);
@@ -40,7 +40,7 @@ const TaskForm = ({ onSuccess, initialTask }) => {
 
     return (
         <form onSubmit={handleSubmit} className="task-form">
-            <h3 style={{ marginTop: 0 }}>{initialTask ? 'Edit Task' : 'Add New Task'}</h3>
+            <h3 style={{ marginTop: 0 }}>{initialTask && initialTask.$id ? 'Edit Task' : 'Add New Task'}</h3>
             <div className="form-group">
                 <label>Title</label>
                 <input
@@ -84,7 +84,7 @@ const TaskForm = ({ onSuccess, initialTask }) => {
                 />
             </div>
             <button type="submit" className="sketch-button" style={{ width: '100%', marginTop: '20px' }}>
-                {initialTask ? 'Update Task' : 'Add Task'}
+                {initialTask && initialTask.$id ? 'Update Task' : 'Add Task'}
             </button>
         </form>
     );

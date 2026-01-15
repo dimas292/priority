@@ -1,0 +1,76 @@
+/* Custom sketchy style for React Big Calendar */
+
+.rbc-calendar {
+    font-family: "Gochi Hand", "Segoe UI", sans-serif;
+    color: #333;
+}
+
+.rbc-header {
+    padding: 10px 5px;
+    font-weight: bold;
+    border-bottom: 2px solid #000 !important;
+    background-color: #ffccda;
+    /* Light pink background for headers */
+}
+
+.rbc-month-view {
+    border: 2px solid #000 !important;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.rbc-day-bg {
+    border-left: 1px dashed #ccc !important;
+}
+
+.rbc-off-range-bg {
+    background-color: #fce4ec;
+    /* Slightly different pink for off-range days */
+}
+
+.rbc-today {
+    background-color: #e0f7fa !important;
+    /* Light cyan for today */
+}
+
+.rbc-event {
+    border: 1px solid #000 !important;
+    border-radius: 5px !important;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+    padding: 2px 5px !important;
+    color: black !important;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.rbc-event.rbc-selected {
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 2px solid #000 !important;
+}
+
+.rbc-toolbar {
+    margin-bottom: 15px;
+}
+
+.rbc-toolbar button {
+    border: 2px solid #000 !important;
+    border-radius: 5px !important;
+    background: #fff;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 5px;
+    box-shadow: 2px 2px 0px #000;
+    transition: all 0.1s;
+}
+
+.rbc-toolbar button:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+.rbc-toolbar button.rbc-active {
+    background-color: #ffcfdf !important;
+    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1);
+}

@@ -3,7 +3,6 @@ import { AuthProvider } from './context/AuthContext';
 import { TasksProvider } from './context/TasksContext';
 import PrivateRoutes from './components/PrivateRoutes';
 import Login from './pages/Login';
-import Register from './pages/Register';
 import Home from './pages/Home';
 
 function App() {
@@ -13,7 +12,7 @@ function App() {
         <TasksProvider>
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
             <Route element={<PrivateRoutes />}>
               <Route path="/" element={<Home />} />
             </Route>

@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
             await account.createEmailPasswordSession(email, password);
             await checkUserStatus();
         } catch (error) {
-             throw error;
+            throw error;
         } finally {
             setLoading(false);
         }
@@ -38,8 +38,8 @@ export const AuthProvider = ({ children }) => {
     const register = async (userInfo) => {
         setLoading(true);
         try {
-             await account.create(ID.unique(), userInfo.email, userInfo.password, userInfo.name);
-             await login(userInfo.email, userInfo.password);
+            await account.create(ID.unique(), userInfo.email, userInfo.password, userInfo.name);
+            await login(userInfo.email, userInfo.password);
         } catch (error) {
             throw error;
         } finally {
@@ -59,17 +59,46 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const loginWithGoogle = async () => {
+        setLoading(true);
+        try {
+            account.createOAuth2Session(
+                'google',
+                'http://localhost:5173',
+                'http://localhost:5173/login',
+            );
+        } catch (error) {
+            console.error("Google Login Failed:", error);
+            setLoading(false);
+        }
+    };
+
+    const getProviderAccessToken = async () => {
+        try {
+            const session = await account.getSession('current');
+            return session.providerAccessToken;
+        } catch (error) {
+            return null;
+        }
+    };
+
     const contextData = {
         user,
         login,
         register,
         logout,
+        loginWithGoogle,
+        getProviderAccessToken,
         loading
     };
 
     return (
         <AuthContext.Provider value={contextData}>
-            {loading ? <p>Loading...</p> : children}
+            {loading ? (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw' }}>
+                    Loading...
+                </div>
+            ) : children}
         </AuthContext.Provider>
     );
 };

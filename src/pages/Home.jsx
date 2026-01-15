@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
 import { useAuth } from '../context/AuthContext';
 import { useTasks } from '../context/TasksContext';
 import MainLayout from '../components/MainLayout';
@@ -7,12 +9,16 @@ import TaskForm from '../components/TaskForm';
 import TaskItem from '../components/TaskItem';
 import Modal from '../components/Modal';
 
+const localizer = momentLocalizer(moment);
+
 const Home = () => {
     const { logout } = useAuth();
     const { tasks, loading, updateTask } = useTasks();
     const [activeTab, setActiveTab] = useState('task');
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [editingTask, setEditingTask] = useState(null);
+
+    // ... (rest of filtering/DnD/handlers)
 
     const handleEditClick = (task) => {
         setEditingTask(task);
@@ -27,6 +33,19 @@ const Home = () => {
     const handleCloseModal = () => {
         setShowCreateModal(false);
         setEditingTask(null);
+    };
+
+    const handleSelectSlot = ({ start, end }) => {
+        // Create a draft task with selected dates
+        // Note: end date from 'select' is exclusive, normally we might want it inclusive or keep as is.
+        // For simplicity, we use start and end as provided.
+        setEditingTask({
+            title: '',
+            level: 'low',
+            date_start: start.toISOString(),
+            date_end: end.toISOString()
+        });
+        setShowCreateModal(true);
     };
 
     const onDragEnd = async (result) => {
@@ -158,8 +177,68 @@ const Home = () => {
             )}
 
             {activeTab === 'schedule' && (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: '#888' }}>
-                    <p>Schedule view is under construction.</p>
+                <div style={{ height: '100%', padding: '10px' }}>
+                    <Calendar
+                        localizer={localizer}
+                        events={tasks
+                            .filter(t => t.date_start) // Only show tasks with a start date
+                            .map(t => ({
+                                id: t.$id,
+                                title: t.title,
+                                start: new Date(t.date_start),
+                                end: t.date_end ? new Date(t.date_end) : new Date(new Date(t.date_start).getTime() + 60 * 60 * 1000), // Default to 1 hour if no end date
+                                resource: t
+                            }))}
+                        startAccessor="start"
+                        endAccessor="end"
+                        selectable={true}
+                        onSelectSlot={handleSelectSlot}
+                        style={{ height: '100%' }}
+                        onSelectEvent={handleEditClick}
+                        components={{
+                            event: ({ event }) => (
+                                <div
+                                    title={`${event.title} (${new Date(event.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})`}
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    <span style={{
+                                        fontSize: '0.7rem',
+                                        color: '#333',
+                                        marginBottom: '2px',
+                                        lineHeight: 1,
+                                        maxWidth: '100%',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        whiteSpace: 'nowrap'
+                                    }}>
+                                        {event.title}
+                                    </span>
+                                    <div style={{
+                                        width: '8px',
+                                        height: '8px',
+                                        borderRadius: '50%',
+                                        backgroundColor: event.resource.level === 'high' ? '#d9534f'
+                                            : event.resource.level === 'medium' ? '#f0ad4e'
+                                                : '#5cb85c',
+                                    }} />
+                                </div>
+                            )
+                        }}
+                        eventPropGetter={() => ({
+                            style: {
+                                backgroundColor: 'transparent',
+                                border: 'none',
+                                padding: 0,
+                                textAlign: 'center',
+                                boxShadow: 'none'
+                            }
+                        })}
+                    />
                 </div>
             )}
 
