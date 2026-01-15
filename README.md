@@ -1,26 +1,40 @@
-# React starter kit with Appwrite
+# PRIORITY
 
-Kickstart your React development with this ready-to-use starter project integrated with [Appwrite](https://www.appwrite.io)
+**Priority** adalah sebuah productivity apps yang menyelesaikan masalah pencatatan yang ribet mengenai skala prioritas, pengingat, dan jadwal. Dibangun untuk mengotomasi pencatatan tanpa harus membuka laptop, memungkinankan Anda mencatat tugas, kerjaan ringan, hingga kerjaan berat hanya lewat prompt chat.
 
-## 🚀Getting started
+## Fitur Utama
 
-###
-Clone the Project
-Clone this repository to your local machine using Git:
+Aplikasi ini mengintegrasikan kemudahan chat (WhatsApp) dengan antarmuka web yang intuitif.
 
-`git clone https://github.com/appwrite/starter-for-react`
+### Cara Pakai
+Untuk menggunakan fitur chat, Anda bisa mengirim pesan ke bot WhatsApp kami.
 
-## 🛠️ Development guid
-1. **Configure Appwrite**<br/>
-   Navigate to `.env` and update the values to match your Appwrite project credentials.
-2. **Customize as needed**<br/>
-   Modify the starter kit to suit your app's requirements. Adjust UI, features, or backend
-   integrations as per your needs.
-3. **Install dependencies**<br/>
-   Run `npm install` to install all dependencies.
-4. **Run the app**<br/>
-   Start the project by running `npm run dev`.
+### Spesifikasi
 
-## 💡 Additional notes
-- This starter project is designed to streamline your React development with Appwrite.
-- Refer to the [Appwrite documentation](https://appwrite.io/docs) for detailed integration guidance.
+#### Via WhatsApp
+- Menambah task
+- Melihat task
+- Melihat skala prioritas
+
+#### Via Web / Chrome Extension
+- Merubah level stack (Low, Medium, High)
+- Menambah task
+- Melihat task (Kanban Board)
+
+## Tech Stack
+
+- **Frontend**: React (Vite)
+- **Backend**: Appwrite
+- **Styling**: CSS (Custom Design)
+
+## Arsitektur Dasar
+
+![Arsitektur Dasar](https://res.cloudinary.com/dmx8hcmxh/image/upload/v1768490726/Tanpa_judul-2025-10-30-2207_1_wgoxsd.png)
+
+## Screenshots
+
+### Login Screen
+![Login Screen](/public/Screenshot_2026-01-15_22-26-56.png)
+
+### Task Management (Kanban)
+![Task Management](/public/Screenshot_2026-01-15_22-26-43.png)
