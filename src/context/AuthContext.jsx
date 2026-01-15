@@ -95,8 +95,8 @@ export const AuthProvider = ({ children }) => {
     return (
         <AuthContext.Provider value={contextData}>
             {loading ? (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw' }}>
-                    Loading...
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw', flexDirection: 'column', gap: '20px' }}>
+                    <img src="/priority.png" alt="Loading..." style={{ width: '150px', height: 'auto' }} />
                 </div>
             ) : children}
         </AuthContext.Provider>

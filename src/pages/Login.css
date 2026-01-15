@@ -99,3 +99,23 @@
     text-decoration: none;
     border-bottom: 1px solid black;
 }
+
+@media (max-width: 480px) {
+    .login-title {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .login-card {
+        padding: 15px;
+    }
+
+    .form-group label {
+        font-size: 1.2rem;
+    }
+
+    .sketch-input,
+    .sketch-button {
+        font-size: 1rem;
+    }
+}

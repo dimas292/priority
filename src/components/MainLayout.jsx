@@ -10,14 +10,7 @@ const MainLayout = ({ children, activeTab, onTabChange, onCreateClick, onLogout 
                     </div>
                     <button
                         onClick={onLogout}
-                        style={{
-                            marginBottom: '20px',
-                            background: 'none',
-                            border: 'none',
-                            fontSize: '1.5rem',
-                            cursor: 'pointer',
-                            color: '#ff5555'
-                        }}
+                        className="logout-btn"
                         title="Logout"
                     >
                         &#x23FB; {/* Power icon */}
