@@ -64,8 +64,8 @@ export const AuthProvider = ({ children }) => {
         try {
             account.createOAuth2Session(
                 'google',
-                'http://localhost:5173',
-                'http://localhost:5173/login',
+                `${window.location.origin}/`,
+                `${window.location.origin}/login`,
             );
         } catch (error) {
             console.error("Google Login Failed:", error);
