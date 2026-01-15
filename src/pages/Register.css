@@ -1,0 +1,101 @@
+/* Container with the hatched background */
+.register-page-container {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #c4ffc4;
+    background-image: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 2px,
+            #9eff9e 2px,
+            #9eff9e 4px);
+}
+
+.register-card {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.register-title {
+    font-size: 3rem;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Styled Inputs */
+.sketch-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    border: 2px solid #000;
+    border-radius: 15px;
+    background-color: #cdffcd;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+}
+
+/* Register Button */
+.sketch-button {
+    align-self: center;
+    margin-top: 20px;
+    padding: 10px 40px;
+    font-size: 1.5rem;
+    font-family: inherit;
+    background-color: #cdffcd;
+    border: 2px solid #000;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.sketch-button:active {
+    transform: scale(0.95);
+}
+
+.footer-text {
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+.login-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid black;
+}

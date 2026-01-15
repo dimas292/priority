@@ -7,4 +7,7 @@ const client = new Client()
 const account = new Account(client);
 const databases = new Databases(client);
 
+export const DATABASE_ID = import.meta.env.VITE_DATABASE_ID;
+export const COLLECTION_ID_TASKS = import.meta.env.VITE_COLLECTION_ID_TASKS;
+
 export { client, account, databases };
